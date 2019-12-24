@@ -1,0 +1,33 @@
+.main {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.nav {
+	position: fixed;
+	left: 0;
+	top: 0;
+	padding: 0 20px;
+	display: flex;
+	align-items: center;
+	height: 44px;
+	width: 100%;
+	background: #183858;
+
+	a {
+		margin-right: 20px;
+		color: #fff;
+		text-decoration: none;
+
+		&.active,
+		&:hover {
+			color: #5fafff;
+		}
+	}
+}
+
+.content {
+	padding: 20px;
+	padding-top: 64px;
+}
