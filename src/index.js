@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Redirect, Route, NavLink } from 'react-router-dom';
 
 import Home from './containers/home';
 import User from './containers/user';
@@ -20,6 +20,7 @@ export default class Index extends React.Component {
 						<Switch>
 							<Route path="/home" component={props => <Home />} />
 							<Route path="/user" component={props => <User />} />
+							<Redirect to="/home" />
 						</Switch>
 					</section>
 				</main>
