@@ -4,9 +4,9 @@
   "description": "React framework front-end project template",
   "main": "index.js",
   "scripts": {
-    "mock": "webpack-dev-server --config ./script/webpack.dev.js --env.mode development --env.mock",
-    "start": "webpack-dev-server --config ./script/webpack.dev.js --env.mode development",
-    "build": "webpack --config ./script/webpack.prod.js --env.mode production"
+    "mock": "webpack-dev-server --config ./scripts/webpack.dev.js --env.mode development --env.mock",
+    "start": "webpack-dev-server --config ./scripts/webpack.dev.js --env.mode development",
+    "build": "webpack --config ./scripts/webpack.prod.js --env.mode production"
   },
   "author": "fawzi",
   "license": "ISC",
@@ -40,6 +40,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",

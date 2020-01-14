@@ -21,7 +21,7 @@ module.exports = ({ mode }, ...others) => webpackMerge(webpackBase({ mode }, ...
 	output: {
 		filename: '[name]-[hash:5].min.js',
 		path: buildOutputDir,
-		publicPath: './',
+		publicPath: '/',
 		libraryTarget: 'umd'
 	},
 	module: {
@@ -62,9 +62,6 @@ module.exports = ({ mode }, ...others) => webpackMerge(webpackBase({ mode }, ...
 			filename: '[name]-[hash:5].min.css',
 			chunkFilename: '[name].css',
 			allChunks: true
-		}),
-		new webpack.DefinePlugin({
-			'process.env.NODE_ENV': JSON.stringify(mode)
 		})
 	]
 });

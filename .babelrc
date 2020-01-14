@@ -9,12 +9,6 @@
         "@babel/plugin-transform-react-constant-elements",
         "@babel/plugin-transform-runtime",
         ["@babel/plugin-proposal-decorators", { "legacy": true }],
-        ["@babel/plugin-proposal-class-properties", { "loose" : true }],
-        [
-            "import", {
-                "libraryName": "cloud-hd-ui",
-                "libraryDirectory": ""
-            }
-        ]
+        ["@babel/plugin-proposal-class-properties", { "loose" : true }]
     ]
 }

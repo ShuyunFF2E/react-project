@@ -1,0 +1,9 @@
+{
+    "_注释_|": "webpack-dev-server config.proxy => Configure content according to environment",
+    "_注释_!": "Invalid configuration content in mock environment",
+
+    "development": {
+    },
+    "production": {
+    }
+}
