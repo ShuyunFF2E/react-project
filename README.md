@@ -43,6 +43,12 @@ React framework front-end project template
    ...
 ```
 
+### 依赖包
+- 框架：`react@^16.12.0`、`react-dom@^16.12.0`、`prop-types@^15.7.2`
+- 路由：`react-router-dom@^5.1.2`、`history@^5.0.0`
+- 请求：`axios@^0.19.2`
+- 状态管理：`mobx@^5.15.4`、`mobx-react@^6.2.2`
+
 ### 安装使用
 > 开发环境区分真实联调和本地mock server工作模式，mock相关API配置查看根目录下的/mock目录
 
@@ -74,7 +80,7 @@ npm run build
 /*-------------------@commons/history.js------------------*/
 
 // 开发/生产环境
-export default const history = createHashHistory()
+export default const history = createBrowserHistory()
 
 /*----------------------引入使用-----------------------------*/
 

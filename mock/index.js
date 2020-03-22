@@ -1,8 +1,8 @@
 module.exports = function(app) {
 
 	// get
-	app.get('/test', function(req, res) {
-		res.json([1, 2, 3, 4]);
+	app.get('/home/content', function(req, res) {
+		res.json('React framework front-end project template');
 	});
 
 	// post

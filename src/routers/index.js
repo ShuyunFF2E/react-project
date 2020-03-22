@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Redirect, Route, NavLink } from 'react-router-dom';
+import history from '@commons/history';
 
-import Dashboard from '../containers/dashboard';
+import Home from '../containers/home';
 import User from '../containers/user';
 
 import classes from './style.less';
@@ -9,19 +10,19 @@ import classes from './style.less';
 export default class Routers extends React.Component {
 	render() {
 		return (
-			<Router>
+			<Router history={history}>
 				<main className={classes.main}>
 					<nav className={classes.nav}>
-						<NavLink to="/dashboard" activeClassName={classes.active}>Dashboard</NavLink>
+						<h1>React-project</h1>
+						<NavLink to="/home" activeClassName={classes.active}>Home</NavLink>
 						<NavLink to="/user" activeClassName={classes.active}>User</NavLink>
 					</nav>
 
 					<section className={classes.content}>
 						<Switch>
-							<Route path="/dashboard" component={Dashboard} />
+							<Route path="/home" component={Home} />
 							<Route path="/user" component={User} />
-							<Route path="/*" component={() => <span>Not Found!</span>} />
-							<Redirect to="/dashboard" />
+							<Redirect form="/" to="/home" />
 						</Switch>
 					</section>
 				</main>
