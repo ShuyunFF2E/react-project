@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -5,15 +6,26 @@ const { description } = require('../package.json');
 const { version } = require('react/package.json');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+const srcPath = path.resolve('./src');
+const dirs = fs.readdirSync(srcPath);
+
+const alias = dirs.reduce((acc, dir) => {
+	const fullPath = path.join(srcPath, dir);
+	const stats = fs.statSync(fullPath);
+
+	if(stats.isDirectory()) {
+		acc[`@${dir}`] = fullPath
+	}
+	return acc;
+}, { '@src': srcPath });
+
 module.exports = ({ mode }) => ({
 	resolve: {
 		alias: {
-			'@src': path.resolve('./src'),
-			'@assets': path.resolve('./src/assets'),
-			'@commons': path.resolve('./src/commons'),
-			'@components': path.resolve('./src/components'),
-			'cloud-react': path.resolve('./node_modules/cloud-react'), // 避免业务组件库和业务代码引用的cloud-react版本不一致问题
-			gojs: path.resolve('./src/assets/libs/gojs/go.js')
+			...alias,
+
+			// 避免业务组件库和业务代码引用的cloud-react版本不一致问题
+			'cloud-react': path.resolve('./node_modules/cloud-react'),
 		},
 		modules: [path.resolve(__dirname, './src'), 'node_modules'],
 		extensions: ['.js', '.jsx']
@@ -29,24 +41,35 @@ module.exports = ({ mode }) => ({
 				exclude: /node_modules/
 			},
 			{
-				test: /\.(c|le)ss$/,
+				test: /\.less$/,
 				use: [
 					mode !== 'production' ? 'style' : MiniCssExtractPlugin.loader,
 					{
 						loader: 'css-loader',
 						options: {
+							localsConvention: 'camelCase',
 							modules: {
 								localIdentName: '[local]-[hash:base64:5]',
+
 							},
 							sourceMap: mode !== 'production'
 						}
 					},
-					'less'
+					{
+						loader: 'less-loader',
+						options: {
+							sourceMap: true
+						}
+					}
 				],
 				include: [
 					path.resolve(__dirname, '../src'),
 					path.resolve(__dirname, '../node_modules')
 				]
+			},
+			{
+				test: /\.css$/,
+				use: ['style', 'css']
 			},
 			{
 				test: /\.(png|jpe?g|gif|svg|woff2?|eot|ttf|otf)(\?.*)?$/,
